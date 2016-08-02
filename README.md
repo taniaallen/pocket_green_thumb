@@ -1,4 +1,7 @@
-# Synopsis
+#Pocket Green Thumb
+
+
+## Synopsis
 
 Gardening has always been a hobby I wanted to take up when I became a homeowner. However there is so much information to know about cultivating plants and those details can be different with every plant you decide to grow. The pocket green thumb app will allow a user to easily locate the information needed for growing their beloved plants in their pocket. The pocket green thumb app will allow a user to instantly look up a plant to determine how much water and sunlight it will need, what the soil pH should be and more from their smartphone.
 
