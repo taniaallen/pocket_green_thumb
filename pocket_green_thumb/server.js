@@ -6,20 +6,32 @@ var bcrypt			= require('bcrypt');
 
 
 
-/* Application settings */
+/* Connection settings */
 var app = express();
 var port = process.env.PORT || 3000
+var mongoDBURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/greenthumb'
+
+
+/* App Settings */
+app.use(express.static('public'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:false}));
 
 
 
 
 
+/* Basic Route to test connection  */
+app.get('/', function(req,res){
+	res.render('public/index.html');
+});
 
+/* Port and Database Connections  */
 
-
-
-
-
+mongoose.connect(mongoDBURI);
+mongoose.connection.once('open', function(){
+	console.log('Connected to Mongod!');
+});
 
 app.listen(port, function(){
 	console.log('server started!');
