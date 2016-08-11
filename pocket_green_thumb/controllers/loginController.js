@@ -9,7 +9,24 @@ router.post('/', function(req,res){
 	User.findOne({username:req.body.username}, function(err,foundUser){
 		if(bcrypt.compareSync(req.body.password, foundUser.password)) {
 			req.session.loggedInUsername = foundUser.username;
-			res.render
+			res.send(foundUser);
+			} else {
+			res.redirect('/');
 		}
-	})
-})
+	});
+});
+
+// Route for login/ New User page
+router.get('/newuser', function(req,res){
+	res.render('public/index');
+});
+
+// Post new username and password here
+router.post('/newuser', function(req,res){
+	req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
+	User.create(req.body, function(err, user) {
+		res.send(user);
+	});
+});
+
+module.exports = router;
