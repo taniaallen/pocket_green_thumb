@@ -9,9 +9,9 @@ router.post('/', function(req,res){
 	User.findOne({username:req.body.username}, function(err,foundUser){
 		if(bcrypt.compareSync(req.body.password, foundUser.password)) {
 			req.session.loggedInUsername = foundUser.username;
-			res.send(foundUser);
+			res.send('');
 			} else {
-			res.redirect('/');
+			res.redirect('/newuser');
 		}
 	});
 });
@@ -25,7 +25,7 @@ router.get('/newuser', function(req,res){
 router.post('/newuser', function(req,res){
 	req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
 	User.create(req.body, function(err, user) {
-		res.send(user);
+		res.send('');
 	});
 });
 

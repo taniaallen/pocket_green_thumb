@@ -1,4 +1,4 @@
-<html ng-app>
+<html ng-app="GreenThumb" lang="en">
 <head>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,29 +16,12 @@
 		<h1>Pocket Green Thumb</h1>
 	</header>	
 
-	<div>
-		<h2 id="sign-in">Login</h2>
-		<form  action="/login" method="POST">
-			<input type="text" name="username" placeholder="username"/>
-			<input type="password" name="password" />
-			<input type="submit" name="Submit" />
-		</form><br>
-		<p>If you do not have an account, Sign Up here!</p>
-	</div>
+	<div ng-include="user.includePath"></div>
 
-	<div>
-	<h3>Sign Up: create a user</h3>
-	<form action="/login/newuser" method="POST">
-		<input type="text" name="username" placeholder="username"/>
-		<input type="text" name="author" placeholder="Your Name"/>
-		<input type="password" name="password" />
-		<input type="submit" value="Sign Up" />
-	</form>
 
-	</div>
 
 	<div class="main-container">
-		<h3>Welcome <%= data.name %>!</h3>
+	
 	</div>
 
 
