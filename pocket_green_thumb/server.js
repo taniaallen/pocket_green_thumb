@@ -19,15 +19,18 @@ app.use(session({
 
 
 /*   DB   */
-loginController = require('./controllers/loginController.js');
+var loginController = require('./controllers/loginController.js');
+var usersController = require('./controllers/usersController.js');
 
 
 /*  Middleware  */
 app.use(express.static('public'));
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
+
 
 app.use('/login', loginController);
+app.use('/users', usersController);
 
 
 /* Basic Route to test connection  */

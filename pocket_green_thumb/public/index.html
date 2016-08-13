@@ -9,27 +9,29 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-sanitize.min.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
-    <base href="/">
+    <base href="/" />
 </head>
 <body ng-controller="UserController as user">
 	<header>
 		<h1>Pocket Green Thumb</h1>
 	</header>	
 
-	<div ng-include="user.includePath"></div>
-
-
-
-	<div class="main-container">
-	
+<!-- 	<div>
+		<nav>
+			<li ng-if="!showContent"><a href="/login">Log In</a></li>
+			<li ng-if="!showContent"><a href="/signup">Sign Up</a></li>
+			<li ng-show="showContent"><a href="/search">Search for Plants</a></li>
+		</nav>
 	</div>
+	
+	<main ng-view></main> -->
 
 
 
 
+<div ng-if="!showContent" ng-include="user.includePath"></div>
 
-
-
+<div ng-if="showContent" ng-include="'partials/search.html'"></div>
 
 
 

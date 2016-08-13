@@ -1,7 +1,10 @@
-<h2 id="sign-in">Login</h2>
-	<form  action="/login" method="POST">
-		<input type="text" name="username" placeholder="username"/>
-		<input type="password" name="password" />
+<div>
+	<h2 id="sign-in">Login</h2>
+	<form ng-submit="user.logIn(user)" method="POST">
+		<input type="text" ng-model="user.username" placeholder="username"/>
+		<input type="password" ng-model="user.password" />
 		<input type="submit" name="Submit" />
 	</form><br>
-	<p>If you do not have an account, <button ng-click="user.signUp()">Sign Up here!</button></p>
+	<p>If you do not have an account, <button ng-click="user.signUpPath()">Sign Up here!</button></p>
+</div>
+
