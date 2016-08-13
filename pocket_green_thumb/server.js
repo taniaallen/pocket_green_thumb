@@ -34,5 +34,5 @@ mongoose.connection.once('open', function(){
 });
 
 app.listen(port, function(){
-	console.log('server started!');
+	console.log('server started on port: ' + port);
 });
