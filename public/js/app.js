@@ -38,7 +38,22 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 	}
 }]);
 
+app.controller('PlantsController', ['$http', '$scope', function($http, $scope){
+	var controller = this;
 
+	this.getPlants = function(name){
+		$http({
+			method: 'GET',
+			url: 'https://plantsdb.xyz/search?='+name
+		}).then(function(response){
+			//sucess callback
+			console.log(response);
+		}, function(response){
+			//fail callback
+			console.log(response);
+		});
+	}
+}]);
 
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
