@@ -3,6 +3,9 @@ var app = angular.module('GreenThumb', ['ngRoute', 'ngSanitize']);
 app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope', function($scope, $routeParams, $http, $rootScope){
 	var controller = this;
 	$scope.showContent = false;
+	$scope.loggedOut = '';
+
+	this.plants = [];
 
 
 	// change the login partial to the sign up partial if the user clicks on the "Sign Up" link.
@@ -13,6 +16,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 
 	// Log in Action
 	this.logIn = function(user){
+
 
 		$http({
 			method: 'POST',
@@ -26,34 +30,54 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 	}
 
 	this.signUp = function(user){
+		console.log(user);
 
 		$http({
 			method: 'POST',
 			url: '/users/signup',
 			data: user
 		}).then(function(response){
-			controller.user = response.data.data;
+			$scope.user = response.data.data;
 			$scope.showContent = true;
 		});
 	}
-}]);
 
-app.controller('PlantsController', ['$http', '$scope', function($http, $scope){
-	var controller = this;
+	$scope.logOut = function() {
+		IN.User.logout(function() {
+			$scope.showContent = false;
+			$http ({
+				method: 'GET',
+				url: '/users/logout' 
+			}).then(function(response){
+				$scope.loggedOut = reponse.data;
+			}, function(response){
+				console.log(response);
+			});
+		});
+	}
 
-	this.getPlants = function(name){
+
+// Post a new plant to the user's plants array
+	this.newPlants = function(plant){
+
+
 		$http({
-			method: 'GET',
-			url: 'https://plantsdb.xyz/search?='+name
+			method: 'POST',
+			url: '/users/:id/newplant',
+			data: this
 		}).then(function(response){
 			//sucess callback
-			console.log(response);
+			console.log(response.data);
 		}, function(response){
 			//fail callback
 			console.log(response);
 		});
 	}
 }]);
+
+
+
+
 
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
@@ -71,9 +95,9 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 		templateUrl: 'partials/signup.html',
 		controller: 'UserController',
 		controller: 'user'		
-	}).when('/search',{
-		templateUrl: 'partials/search.html',
-		controller: 'UserController',
-		controllerAs: 'user'
+	}).when('/newplant',{
+		templateUrl: 'partials/newplant.html',
+		controller: 'UsersController',
+		controllerAs: 'plant'
 	});
 }]);

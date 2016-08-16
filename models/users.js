@@ -1,11 +1,12 @@
-var mongoose = require('mongoose');
+var mongoose 		= require('mongoose');
+var plantInfoSchema	= require('./plants.js').schema;
 
 
 var userSchema = mongoose.Schema ({
 	username: String,
 	password: String,
 	name: String,
-	plants: [],
+	plants: [plantInfoSchema],
 	garden: []
 });
 

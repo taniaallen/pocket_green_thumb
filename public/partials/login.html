@@ -1,10 +1,14 @@
 <div>
 	<h2 id="sign-in">Login</h2>
-	<form ng-submit="user.logIn(user)" method="POST">
-		<input type="text" ng-model="user.username" placeholder="username"/>
-		<input type="password" ng-model="user.password" />
-		<input type="submit" name="Submit" />
-	</form><br>
-	<p>If you do not have an account, <button ng-click="user.signUpPath()">Sign Up here!</button></p>
+	<div class="form-group">
+		<form class="form-inline" ng-submit="user.logIn(user)" method="POST">
+			<input type="text" class="form-control" ng-model="user.username" placeholder="username"/>
+			<input type="password" class="form-control" ng-model="user.password" placeholder="password"/>
+			<input type="submit" value="Submit" class="btn btn-default"/>
+		</form>
+	</div>
+
+	<p>If you do not have an account,</p>
+		<button class="btn btn-default" ng-click="user.signUpPath()">Sign Up here!</button>
 </div>
 

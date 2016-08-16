@@ -1,12 +1,22 @@
 body {
 	text-align: center;
 	margin: 5%;
-	border: 1px solid grey;
-	border-radius: 10%;
 }
 
+/*  Header Styling  */
 header {
-	padding-top: 5px;
-	color: green;
-	font-size: 2em;
+	background-image: url('../img/green-thumb-print.jpg');
+	background-size: cover;
+	background-position: center 20%;
+	padding-bottom: 20%;
+	color: #034a1b;	
+}
+
+h1 {
+	font-size: 3.5em;
+}
+
+.hero-image {
+	display: inline;
+	width: 50%;
 }
