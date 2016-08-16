@@ -19,8 +19,8 @@ app.use(session({
 
 
 /*   DB   */
-var loginController = require('./controllers/loginController.js');
 var usersController = require('./controllers/usersController.js');
+var plantsController = require('./controllers/plantsController');
 
 
 /*  Middleware  */
@@ -28,16 +28,24 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
-
-app.use('/login', loginController);
 app.use('/users', usersController);
 
+/* Seed path */
+app.use('/plants', plantsController);
 
-/* Basic Route to test connection  */
-app.get('/', function(req,res){
-	res.render('public/index.html');
+
+/* Basic Route  */
+app.get('/', function(req, res){
+    if(req.session.loggedInUsername !== undefined){
+        res.render('public/index.html', {
+            userLoggedIn:true
+        });
+    } else {
+        res.render('public/index.html', {
+            userLoggedIn:false
+        });
+    }
 });
-
 /* Server  */
 
 mongoose.connect(mongoDBURI);
