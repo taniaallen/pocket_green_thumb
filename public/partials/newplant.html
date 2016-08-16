@@ -1,15 +1,21 @@
 <div>
 <h3>Hello {{user.user.name}}</h3>
+	<div ng-if="showList">
+		<h3>Your Current Garden</h3>
+		<li ng-repeat="plant in user.plants">
+			{{plant.plantName}}
+		</li>
+	</div>
 
 	<h4>Add a plant to your garden:</h4>
 	<div class="form-group">
 		<form ng-submit="user.newPlants(plant)" method="POST">
-			<input type="text" class="form-control" ng-model="user.user.plantName" placeholder="Plant Name"/></br>
-			<input type="text" class="form-control" ng-model="user.user.plantImg" placeholder="Plant Image"/></br>
-			<input type="number" class="form-control" ng-model="user.user.plantCount" placeholder="How many were planted?"/></br>
-			<input type="text" class="form-control" ng-model="user.user.plantMoisture" placeholder="Moisture Level"/></br>
-			<input type="text" class="form-control" ng-model="user.user.plantLight" placeholder="How much Light?"/></br>
-			<input type="text" class="form-control" ng-model="user.user.plantPh" placeholder="pH Level"/></br>
+			<input type="text" class="form-control" ng-model="user.plantName" placeholder="Plant Name"/></br>
+			<input type="text" class="form-control" ng-model="user.plantImg" placeholder="Plant Image"/></br>
+			<input type="number" class="form-control" ng-model="user.plantCount" placeholder="How many were planted?"/></br>
+			<input type="text" class="form-control" ng-model="user.plantMoisture" placeholder="Moisture Level"/></br>
+			<input type="text" class="form-control" ng-model="user.plantLight" placeholder="How much Light?"/></br>
+			<input type="text" class="form-control" ng-model="user.plantPh" placeholder="pH Level"/></br>
 			<button type="submit" class="btn btn-default">Submit to Garden Patch</button>
 		</form>
 

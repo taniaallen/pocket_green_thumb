@@ -1,12 +1,12 @@
 var mongoose = require('mongoose');
 
 var plantInfoSchema = mongoose.Schema({
-	name: String,
-	img: String,
-	count: Number,
-	moisture: String,
-	light: String,
-	pH: Number,
+	plantName: String,
+	plantImg: String,
+	plantCount: Number,
+	plantMoisture: String,
+	plantLight: String,
+	plantPh: Number,
 });
 
 var Plant = mongoose.model("Plant", plantInfoSchema);

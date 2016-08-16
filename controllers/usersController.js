@@ -52,7 +52,8 @@ router.post('/login', function(req,res){
 // })
 
 // Get saved plant data
-router.get('/:id', function(req,res){
+router.get('/:id/plants', function(req,res){
+	console.log(req.body);
 	User.findById(req.params.id, function(err,foundUser) {
 		res.send(foundUser);
 	});
@@ -64,21 +65,14 @@ router.post('/:id/newplant', function(req,res) {
 	console.log(req.body);
 	
 	User.findById(req.body.user._id, function(err, foundUser) {
-		Plant.create({
-			name: req.body.plantName, 
-			img: req.body.plantImg, 
-			count: req.body.plantCount,
-			moisture: req.body.plantMoisture,
-			light: req.body.plantLight,
-			ph: req.body.plantPh
-		}, function(err, newPlant){
+		Plant.create(req.body , function(err, newPlant){
 			if(err) console.log(err)
 
 
 			foundUser.plants.push(newPlant);
 			foundUser.save(function(err) {
 				if(err) console.log(err);
-				res.send('Plant Saved!');
+				res.send(foundUser);
 			});
 		});		
 	});
