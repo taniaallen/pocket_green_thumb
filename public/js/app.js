@@ -68,6 +68,7 @@ app.controller('UserController', ['$scope', '$routeParams', '$http', '$rootScope
 		}).then(function(response){
 			//sucess callback
 			console.log(response.data);
+			this.plants = response.data;
 		}, function(response){
 			//fail callback
 			console.log(response);
